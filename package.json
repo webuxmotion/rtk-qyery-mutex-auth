@@ -13,6 +13,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:test": "env-cmd -f .env.next react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -36,6 +37,8 @@
   },
   "devDependencies": {
     "async-mutex": "^0.3.2",
+    "env-cmd": "^10.1.0",
     "redux-persist": "^6.0.0"
-  }
+  },
+  "proxy": "http://localhost:8090"
 }

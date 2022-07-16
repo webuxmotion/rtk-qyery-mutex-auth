@@ -8,8 +8,8 @@ import { useLoginMutation } from './authApiSlice'
 const Login = () => {
     const userRef = useRef()
     const errRef = useRef()
-    const [user, setUser] = useState('')
-    const [pwd, setPwd] = useState('')
+    const [user, setUser] = useState('andriipereverziev19@gmail.com')
+    const [pwd, setPwd] = useState('fUf4qsEjLdySrxCdds4fr8VAdYZ')
     const [errMsg, setErrMsg] = useState('')
     const navigate = useNavigate()
 
@@ -32,7 +32,7 @@ const Login = () => {
             dispatch(setCredentials({ ...userData, user }))
             setUser('')
             setPwd('')
-            navigate('/welcome')
+            navigate('/userslist')
         } catch (err) {
             if (!err?.originalStatus) {
                 // isLoading: true until timeout occurs
@@ -56,12 +56,12 @@ const Login = () => {
         <section className="login">
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
 
-            <h1>Employee Login</h1>
+            <h1>Вхід на сайт</h1>
 
             <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username:</label>
+                <label htmlFor="username">Email:</label>
                 <input
-                    type="text"
+                    type="email"
                     id="username"
                     ref={userRef}
                     value={user}
@@ -70,7 +70,7 @@ const Login = () => {
                     required
                 />
 
-                <label htmlFor="password">Password:</label>
+                <label htmlFor="password">Пароль:</label>
                 <input
                     type="password"
                     id="password"
@@ -78,7 +78,7 @@ const Login = () => {
                     value={pwd}
                     required
                 />
-                <button>Sign In</button>
+                <button>Увійти</button>
             </form>
         </section>
     )

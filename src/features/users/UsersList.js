@@ -1,25 +1,22 @@
-import { useGetUsersQuery } from "./usersApiSlice"
+import { useGetCartContentQuery, useGetCartInfoQuery, useGetUserDetailsQuery } from "./usersApiSlice"
 import { Link } from "react-router-dom";
-import { useGetEmployeesQuery } from "./employeesApiSlice";
 
 const UsersList = () => {
     const {
-        data: users,
+        data: cart,
+    } = useGetCartContentQuery();
+
+    const {
+        data: info,
+    } = useGetCartInfoQuery();
+
+    const {
+        data: user,
         isLoading,
         isSuccess,
         isError,
         error
-    } = useGetUsersQuery()
-
-    const { 
-        data: employees,
-    } = useGetEmployeesQuery();
-    const { 
-        data: employees1,
-    } = useGetEmployeesQuery();
-    const { 
-        data: employees2,
-    } = useGetEmployeesQuery();
+    } = useGetUserDetailsQuery();
 
     let content;
     if (isLoading) {
@@ -29,11 +26,11 @@ const UsersList = () => {
             <section className="users">
                 <h1>Users List</h1>
                 <ul>
-                    {users.map((user, i) => {
-                        return <li key={i}>{user.username}</li>
-                    })}
+                    {JSON.stringify(user)}
+                    {cart && JSON.stringify(cart)}
+                    {info && JSON.stringify(info)}
                 </ul>
-                <Link to="/welcome">Back to Welcome</Link>
+                <Link to="/">Back to Home page</Link>
             </section>
         )
     } else if (isError) {
